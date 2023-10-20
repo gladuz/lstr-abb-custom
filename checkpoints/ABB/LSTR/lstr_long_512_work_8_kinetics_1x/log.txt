@@ -7882,3 +7882,4 @@ Epoch 11 | train det_loss: 0.00189 | test det_loss: 0.00834 det_mAP: 0.48405 | r
 Epoch 12 | train det_loss: 0.00116 | test det_loss: 0.00156 det_mAP: 0.49458 | running time: 330.83 sec
 Epoch 13 | train det_loss: 0.00106 | test det_loss: 0.00149 det_mAP: 0.52685 | running time: 315.87 sec
 Epoch 14 | train det_loss: 0.00121 | test det_loss: 0.00232 det_mAP: 0.50239 | running time: 323.13 sec
+Epoch 15 | train det_loss: 0.00042 | test det_loss: 0.00072 det_mAP: 0.49112 | running time: 334.08 sec

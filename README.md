@@ -1,5 +1,14 @@
 # Long Short-Term Transformer for Online Action Detection
 
+## ABB project
+Add data link to our dataset
+```
+ln -s /data/common/abb_project/features/ data/ABB
+```
+Files under src and tools are moved to main folder.
+```
+python train_net.py --config_file configs/ABB/LSTR/lstr_long_512_work_8_kinetics_1x.yaml
+```
 ## Introduction
 
 This is a PyTorch implementation for our NeurIPS 2021 Spotlight paper "[`Long Short-Term Transformer for Online Action Detection`](https://arxiv.org/pdf/2107.03377.pdf)".
