@@ -65,3 +65,7 @@ def do_perframe_det_batch_inference(cfg, model, device, logger):
     logger.info('Action detection perframe m{}: {:.5f}'.format(
         cfg.DATA.METRICS, result['mean_AP']
     ))
+
+    logger.info('Action detection perframe per_class_AP: ')
+    for class_name, ap in result['per_class_AP'].items():
+        logger.info('{}: {:.5f}'.format(class_name, ap))

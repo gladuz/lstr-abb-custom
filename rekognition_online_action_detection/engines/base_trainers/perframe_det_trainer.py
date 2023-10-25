@@ -44,7 +44,7 @@ def do_perframe_det_train(cfg,
                     det_score = model(*[x.to(device) for x in data[:-1]])
                     det_score = det_score.reshape(-1, cfg.DATA.NUM_CLASSES)
                     det_target = det_target.reshape(-1, cfg.DATA.NUM_CLASSES)
-                    det_loss = criterion['MCE'](det_score, det_target)
+                    det_loss = criterion['SCE'](det_score, det_target)
                     det_losses[phase] += det_loss.item() * batch_size
 
                     # Output log for current batch
@@ -83,6 +83,11 @@ def do_perframe_det_train(cfg,
                 det_losses['test'] / len(data_loaders['test'].dataset),
                 det_result['mean_AP'],
             ))
+
+            log.append('test per_class_AP: ')
+            for class_name, ap in det_result['per_class_AP'].items():
+                log.append('{}: {:.5f}'.format(class_name, ap))
+
         log.append('running time: {:.2f} sec'.format(
             end - start,
         ))
