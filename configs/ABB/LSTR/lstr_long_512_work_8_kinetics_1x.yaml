@@ -14,7 +14,7 @@ MODEL:
     DIM_FEEDFORWARD: 1024
     DROPOUT: 0.2
     ACTIVATION: 'relu'
-    LONG_MEMORY_SECONDS: 512
+    LONG_MEMORY_SECONDS: 32
     LONG_MEMORY_SAMPLE_RATE: 4
     WORK_MEMORY_SECONDS: 8
     WORK_MEMORY_SAMPLE_RATE: 1
@@ -22,13 +22,14 @@ MODEL:
       [16, 1, True], [32, 2, True]
     ]
     DEC_MODULE: [-1, 2, True]
-  CRITERIONS: [['MCE', {}]]
+  CRITERIONS: [['SCE', {}]]
+  #CHECKPOINT: '/home/ict69/abb/repo/lstr-abb-custom/checkpoints/ABB/LSTR/lstr_long_512_work_8_kinetics_1x/epoch-250.pth'
 DATA_LOADER:
-  BATCH_SIZE: 16
+  BATCH_SIZE: 256
   NUM_WORKERS: 8
   PIN_MEMORY: True
 SOLVER:
-  NUM_EPOCHS: 25
+  NUM_EPOCHS: 250
   OPTIMIZER: 'adam'
   BASE_LR: 7e-05
   WEIGHT_DECAY: 5e-05
