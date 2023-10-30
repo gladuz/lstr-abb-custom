@@ -127,6 +127,7 @@ class LSTRDataLayer(data.Dataset):
 
 @registry.register('LSTRBatchInferenceTHUMOS')
 @registry.register('LSTRBatchInferenceTVSeries')
+@registry.register('LSTRBatchInferenceABB')
 class LSTRBatchInferenceDataLayer(data.Dataset):
 
     def __init__(self, cfg, phase='test'):

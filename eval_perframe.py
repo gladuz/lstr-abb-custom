@@ -26,6 +26,8 @@ def eval_perframe(pred_scores_file):
     logging.info('Action detection perframe m{}: {:.5f}'.format(
         cfg.DATA.METRICS, result['mean_AP']
     ))
+    for k, v in result['per_class_AP'].items():
+        logging.info('Action detection perframe class {}: {:.5f}'.format(k, v))
 
 
 if __name__ == '__main__':
