@@ -5,6 +5,7 @@
 
 # PyTorch models
 *.pth
+*.txt
 
 # Dataset soft links
 data/THUMOS
