@@ -23,9 +23,12 @@ class Checkpointer(object):
 
     def load(self, model, optimizer=None):
         if self.checkpoint is not None:
+            if self.checkpoint['model_state_dict']['classifier.weight'].shape[0] != model.classifier.weight.shape[0]:
+                self.checkpoint['model_state_dict']['classifier.weight'] = model.classifier.weight
+                self.checkpoint['model_state_dict']['classifier.bias'] = model.classifier.bias
             model.load_state_dict(self.checkpoint['model_state_dict'])
-            if optimizer is not None:
-                optimizer.load_state_dict(self.checkpoint['optimizer_state_dict'])
+            # if optimizer is not None:
+            #     optimizer.load_state_dict(self.checkpoint['optimizer_state_dict'])
 
     def save(self, epoch, model, optimizer):
         torch.save({

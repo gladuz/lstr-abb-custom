@@ -4,8 +4,9 @@
 *.pyc
 
 # PyTorch models
-checkpoints/**/*.pth
+*.pth
 *.txt
+*.pkl
 
 # Dataset soft links
 data/THUMOS

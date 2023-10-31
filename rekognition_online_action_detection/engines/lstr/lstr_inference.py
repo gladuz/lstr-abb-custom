@@ -48,7 +48,7 @@ def do_lstr_stream_inference(cfg, model, device, logger):
     work_memory_length = cfg.MODEL.LSTR.WORK_MEMORY_LENGTH
     work_memory_sample_rate = cfg.MODEL.LSTR.WORK_MEMORY_SAMPLE_RATE
     work_memory_num_samples = cfg.MODEL.LSTR.WORK_MEMORY_NUM_SAMPLES
-
+    memories = []
     if len(cfg.DATA.TEST_SESSION_SET) != 1:
         raise RuntimeError('Only support testing one video each time for stream inference, will fix later')
 
@@ -99,13 +99,13 @@ def do_lstr_stream_inference(cfg, model, device, logger):
                     work_motion_inputs,
                     memory_key_padding_mask)[0]
                 score = score.softmax(dim=-1).cpu().numpy()
-
                 if work_start == 0:
                     gt_targets.extend(list(target[:work_end]))
                     pred_scores.extend(list(score))
                 else:
                     gt_targets.append(list(target[work_end - 1]))
                     pred_scores.append(list(score[-1]))
+                memories.append(memory_key_padding_mask.cpu().numpy())
 
             result = compute_result['perframe'](
                 cfg,
@@ -116,3 +116,5 @@ def do_lstr_stream_inference(cfg, model, device, logger):
 
             end_time = time.time()
             logger.info('Running time: {:.3f} seconds'.format(end_time - start_time))
+            
+    
